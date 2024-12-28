@@ -64,7 +64,7 @@ def _find_similar_words_for_vector(model: KeyedVectors, composite_vector: List[f
 
 
 def combine_words_and_explore_neighbors(first_word: str, second_word: str) -> [str]:
-    model_path = "path/to/your/word2vec/model"  # Replace with your model path
+    model_path = "GoogleNews-vectors-negative300.bin"
     model = _load_model(model_path)
 
     if not first_word:
@@ -83,8 +83,8 @@ def combine_words_and_explore_neighbors(first_word: str, second_word: str) -> [s
         print(e)
 
 
-def download_word2vec_model(path_to_model: str) -> None:
-    wv = api.load('word2vec-google-news-300')
+# def download_word2vec_model(path_to_model: str) -> None:
+#     wv = api.load('word2vec-google-news-300')
 
 
 if __name__ == "__main__":

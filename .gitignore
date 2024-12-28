@@ -1,2 +1,6 @@
+# Directories
 .idea
 venv
+
+# Files
+GoogleNews-vectors-negative300.bin
