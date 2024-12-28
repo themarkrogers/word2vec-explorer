@@ -8,7 +8,7 @@ from gensim.models import KeyedVectors
 
 def _load_model(model_path: str) -> KeyedVectors:
     """
-    Load a pre-trained Word2Vec model.
+    Load a pre-trained Word2Vec model in binary format.
 
     Args:
         model_path (str): Path to the Word2Vec model file.
@@ -16,7 +16,7 @@ def _load_model(model_path: str) -> KeyedVectors:
     Returns:
         KeyedVectors: Loaded Word2Vec model.
     """
-    return KeyedVectors.load(model_path)
+    return KeyedVectors.load_word2vec_format(model_path, binary=True)
 
 
 def _combine_word_vectors(
@@ -72,9 +72,8 @@ def combine_words_and_explore_neighbors(first_word: str, second_word: str) -> [s
     if not second_word:
         second_word = input("Enter the second word: ")
 
-    # Combine vectors
     try:
-        composite_vector = _combine_word_vectors(model, first_word, second_word, method="add")
+        composite_vector = _combine_word_vectors(model, first_word, second_word, method="average")
         similar_words = _find_similar_words_for_vector(model, composite_vector)
         print("\nWords similar to the composite vector:")
         for word, similarity in similar_words:
@@ -83,10 +82,10 @@ def combine_words_and_explore_neighbors(first_word: str, second_word: str) -> [s
         print(e)
 
 
-# def download_word2vec_model(path_to_model: str) -> None:
-#     wv = api.load('word2vec-google-news-300')
-
-
 if __name__ == "__main__":
-    words = combine_words_and_explore_neighbors("foo", "bar")
+    words = combine_words_and_explore_neighbors("honor", "odium")
+    print("1:\n")
+    print(words)
+    print("\n\n 2:\n")
+    words = combine_words_and_explore_neighbors("preservation", "ruin")
     print(words)
